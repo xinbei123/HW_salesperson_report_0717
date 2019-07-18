@@ -1,32 +1,35 @@
 """Generate sales report showing total melons each salesperson sold."""
 
-
+# create a variable called salespeople as a empty list
 salespeople = []
-# making a variable called salespeople as a empty list
 
+# create a variable called melons_sold as a empty list
 melons_sold = []
-# making a variable called melons_sold as a empty list
 
-f = open('sales-report.txt')
 # creating a variable called f(like a file) 
 # using the built in function open to open a txt file and stored in f
+f = open('sales-report.txt')
 
-for line in f:
 # in file f, iterate over each line
+for line in f:
 
-    line = line.rstrip()
     # strip off whitespace after each line
-    entries = line.split('|')
+    line = line.rstrip()
+
     # split up each line by pipe operator, returns a list of strings
-
+    entries = line.split('|')
+    
+    # salesperson is at index 0 of each line
     salesperson = entries[0]
-    # salesperson is assigned at index 0 of each line
-
+    
+    # melons are at index 2 (as integer)
     melons = int(entries[2])
-    # melons are assigned at index 2 (as integer)
-
+    
+    # if salesperson already in the salespeople list
+    # the melon_sold total will be added at that index
+    # if salesperson is not in the salespeople list
+    # salesperson and melon_sold will be added to the empty list salespeople
     if salesperson in salespeople:
-    # checking each salesperson in the empty salespeople list
 
         position = salespeople.index(salesperson)
         melons_sold[position] += melons
@@ -34,6 +37,6 @@ for line in f:
         salespeople.append(salesperson)
         melons_sold.append(melons)
 
-
+# iterate over salespeople list, print number of melons each salesperson sold                
 for i in range(len(salespeople)):
     print(f'{salespeople[i]} sold {melons_sold} melons')
